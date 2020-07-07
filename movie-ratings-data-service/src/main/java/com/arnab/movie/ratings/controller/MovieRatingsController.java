@@ -1,4 +1,4 @@
-package com.arnab.movie.info.controller;
+package com.arnab.movie.ratings.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arnab.movie.info.models.Movie;
-import com.arnab.movie.info.service.MovieInfoService;
+import com.arnab.movie.ratings.models.Rating;
+import com.arnab.movie.ratings.service.MovieRatingsService;
 
 @RestController
-@RequestMapping(value = "/movies")
-public class MovieInfoController {
+@RequestMapping(value = "/ratings")
+public class MovieRatingsController {
 
 	@Autowired
-	private MovieInfoService service;
+	private MovieRatingsService service;
 	
 	@GetMapping(value = "/{movieid}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Movie getMovie(@PathVariable("movieid") String movieId) {
-		return service.getMovie(movieId);
+	public Rating getRating(@PathVariable("movieid") String movieId) {
+		return service.getRating(movieId);
 	}
 	
 }
