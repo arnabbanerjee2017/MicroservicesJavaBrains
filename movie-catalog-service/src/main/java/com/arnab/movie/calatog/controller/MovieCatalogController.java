@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arnab.movie.calatog.models.CatalogItem;
+import com.arnab.movie.calatog.models.WholeResponse;
 import com.arnab.movie.calatog.service.MovieCatalogService;
 
 @RestController
@@ -22,6 +23,11 @@ public class MovieCatalogController {
 	@GetMapping(value = "/{userid}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<CatalogItem> getCatalog(@PathVariable("userid") String userId) {
 		return service.getCatalog(userId);
+	}
+	
+	@GetMapping(value = "/wholeresponse/{userid}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public WholeResponse getWholeResponse(@PathVariable("userid") String userId) {
+		return service.getWholeResponse(userId);
 	}
 	
 }
