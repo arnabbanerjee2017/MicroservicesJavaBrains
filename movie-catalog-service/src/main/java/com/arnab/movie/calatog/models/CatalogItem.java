@@ -3,17 +3,23 @@ package com.arnab.movie.calatog.models;
 public class CatalogItem {
 
 	private String name;
+	private String url;
+	private String imdbId;
 	private String desc;
-	private int rating;
+	private String releaseDate;
+	private double rating;
 
 	public CatalogItem() {
 		super();
 	}
 
-	public CatalogItem(String name, String desc, int rating) {
+	public CatalogItem(String name, String url, String imdbId, String desc, String releaseDate, double rating) {
 		super();
 		this.name = name;
+		this.url = url;
+		this.imdbId = imdbId;
 		this.desc = desc;
+		this.releaseDate = releaseDate;
 		this.rating = rating;
 	}
 
@@ -25,6 +31,22 @@ public class CatalogItem {
 		this.name = name;
 	}
 
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getImdbId() {
+		return imdbId;
+	}
+
+	public void setImdbId(String imdbId) {
+		this.imdbId = imdbId;
+	}
+
 	public String getDesc() {
 		return desc;
 	}
@@ -33,11 +55,19 @@ public class CatalogItem {
 		this.desc = desc;
 	}
 
-	public int getRating() {
+	public String getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
+	public double getRating() {
 		return rating;
 	}
 
-	public void setRating(int rating) {
+	public void setRating(double rating) {
 		this.rating = rating;
 	}
 
@@ -46,8 +76,13 @@ public class CatalogItem {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((desc == null) ? 0 : desc.hashCode());
+		result = prime * result + ((imdbId == null) ? 0 : imdbId.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + rating;
+		long temp;
+		temp = Double.doubleToLongBits(rating);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((releaseDate == null) ? 0 : releaseDate.hashCode());
+		result = prime * result + ((url == null) ? 0 : url.hashCode());
 		return result;
 	}
 
@@ -65,19 +100,35 @@ public class CatalogItem {
 				return false;
 		} else if (!desc.equals(other.desc))
 			return false;
+		if (imdbId == null) {
+			if (other.imdbId != null)
+				return false;
+		} else if (!imdbId.equals(other.imdbId))
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (rating != other.rating)
+		if (Double.doubleToLongBits(rating) != Double.doubleToLongBits(other.rating))
+			return false;
+		if (releaseDate == null) {
+			if (other.releaseDate != null)
+				return false;
+		} else if (!releaseDate.equals(other.releaseDate))
+			return false;
+		if (url == null) {
+			if (other.url != null)
+				return false;
+		} else if (!url.equals(other.url))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "CatalogItem [name=" + name + ", desc=" + desc + ", rating=" + rating + "]";
+		return "CatalogItem [name=" + name + ", url=" + url + ", imdbId=" + imdbId + ", desc=" + desc + ", releaseDate="
+				+ releaseDate + ", rating=" + rating + "]";
 	}
 
 }

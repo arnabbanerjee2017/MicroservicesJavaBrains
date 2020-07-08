@@ -7,18 +7,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.arnab.movie.ratings.constants.RatingConstants;
 import com.arnab.movie.ratings.models.Rating;
 import com.arnab.movie.ratings.service.MovieRatingsService;
 
 @RestController
-@RequestMapping(value = "/ratings")
+@RequestMapping(value = RatingConstants.RATINGS_API_SUB_PATH_1)
 public class MovieRatingsController {
 
 	@Autowired
 	private MovieRatingsService service;
 	
-	@GetMapping(value = "/{movieid}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Rating getRating(@PathVariable("movieid") String movieId) {
+	@GetMapping(value = RatingConstants.RATINGS_API_SUB_PATH_2, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Rating getRating(@PathVariable(RatingConstants.RATINGS_API_SUB_PATH_2_PATH_VARIABLE) String movieId) {
 		return service.getRating(movieId);
 	}
 	

@@ -34,7 +34,7 @@ public class MovieCatalogService {
 			Movie movie = restTemplate.getForObject("http://MOVIE-INFO-SERVICE/movies/" + movieId, Movie.class);
 			Rating rating = restTemplate.getForObject("http://MOVIE-RATINGS-DATA-SERVICE/ratings/" + movieId, Rating.class);			
 			if(movie != null && rating != null) {
-				result.add(new CatalogItem(movie.getName(), "Movie " + movie.getName(), rating.getRating()));
+				result.add(new CatalogItem(movie.getName(), movie.getUrl(), movie.getImdbId(), movie.getDesc(), movie.getReleaseDate(), rating.getRating()));
 			}
 		}
 		return result;		
@@ -67,18 +67,13 @@ public class MovieCatalogService {
 		}		
 		
 		response.setServices(servicesResponse);		
-		
-		//List<ServiceInstance> movieInfoServiceInstances = discoveryClient.getInstances("MOVIE-INFO-SERVICE");
-		//List<ServiceInstance> movieRatingsServiceInstances = discoveryClient.getInstances("MOVIE-RATINGS-DATA-SERVICE");
-		
-		return response;
-		
+		return response;		
 	}
 	
 	private static List<String> getListOfMovieIDs(String userId) {
-		return (userId.equals("A001") ? Arrays.asList("M00001", "M00002", "M00003") :
-			(userId.equals("A002") ? Arrays.asList("M00004", "M00005", "M00006") :
-				(userId.equals("A003") ? Arrays.asList("M00007", "M00008", "M00009") : new ArrayList<>())));
+		return (userId.equals("A001") ? Arrays.asList("550", "555", "560") :
+			(userId.equals("A002") ? Arrays.asList("510", "505", "501") :
+				(userId.equals("A003") ? Arrays.asList("530", "525", "535") : new ArrayList<>())));
 	}
 	
 }

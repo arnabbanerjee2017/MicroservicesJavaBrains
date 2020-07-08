@@ -40,6 +40,12 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -62,7 +68,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>
@@ -70,5 +76,5 @@
 			<url>https://repo.spring.io/milestone</url>
 		</repository>
 	</repositories>
-	
+
 </project>

@@ -3,13 +3,13 @@ package com.arnab.movie.calatog.models;
 public class Rating {
 
 	private String id;
-	private int rating;
+	private double rating;
 
 	public Rating() {
 		super();
 	}
 
-	public Rating(String id, int rating) {
+	public Rating(String id, double rating) {
 		super();
 		this.id = id;
 		this.rating = rating;
@@ -23,11 +23,11 @@ public class Rating {
 		this.id = id;
 	}
 
-	public int getRating() {
+	public double getRating() {
 		return rating;
 	}
 
-	public void setRating(int rating) {
+	public void setRating(double rating) {
 		this.rating = rating;
 	}
 
@@ -36,7 +36,9 @@ public class Rating {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + rating;
+		long temp;
+		temp = Double.doubleToLongBits(rating);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
@@ -54,7 +56,7 @@ public class Rating {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (rating != other.rating)
+		if (Double.doubleToLongBits(rating) != Double.doubleToLongBits(other.rating))
 			return false;
 		return true;
 	}
